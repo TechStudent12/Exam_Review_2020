@@ -1,8 +1,9 @@
 //Name of File: NOTES FOR APS105 (REVIEW FOR EXAM)
 //Author: Sword Lord of the Lonely Peak
 //Date: 2020/05/18
-/*
- * Structures:
+
+/**************************************************************************************************************************************/
+/* Structures:
  * What is a structure?
  * => A user defined datatype!
  * => Using strcuture we can defined a datatype that can hold more than one element. 
@@ -415,4 +416,4 @@
  *              }
  *          }
  *      }
- */
+ **************************************************************************************************************************************/
