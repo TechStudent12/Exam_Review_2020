@@ -131,7 +131,7 @@ int main () {
     insert(2,4); 
     int count = length(); 
     print();
-    printf("Enter a position: ");
+    printf("Enter a position to delete: ");
     scanf("%d", &position);
     if(position > count || count == 0)
     {
