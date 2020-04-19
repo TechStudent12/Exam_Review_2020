@@ -143,6 +143,7 @@ int main () {
         deleteNode(position); 
         print();
         head = reverseNode(); 
+        printf("Reversed order of the Linked List: \n");
         printReverse(); 
         count = length(); 
     }
