@@ -12,6 +12,7 @@
 #include <stdio.h> 
 #include <stdlib.h> 
 #include <stdbool.h>
+#include <math.h>
 
 typedef struct BstNode //Nodes will be created in the heap using malloc function!
 {
@@ -51,30 +52,53 @@ bool search(BstNode* root, int data)
         return search(root->right, data);         
 }
 
-int FindMin(Bst* root)
+int FindMin(BstNode* root)
 {
-  //if(root == NULL); 
-  //{
-  //    printf("ERROR! Tree is empty!");
-  //    return -1; 
-  //}
+  if(root == NULL)
+     return -1;
   while(root->left != NULL)
   {
-     root = root->next; 
+     root = root->left; 
   }
   return root->data; 
 }
 
-int FindMax(Bst* root)
+//Height of a tree is defined the number of edges in the longest path from root to a leaf node!
+//Height of a tree is the height of the root node. 
+//Height of a tree with 1 node is 0. 
+//Depth of a node is the number of edges in path from root to that node. 
+int findHeight(BstNode* root)
 {
-  //if(root == NULL); 
-  //{
-  //    printf("ERROR! Tree is empty!");
-  //    return -1; 
-  //}
+    if(root == NULL)
+        return -1;
+    int lefth = findHeight(root->left);
+    int righth = findHeight(root->right);
+    if(lefth>righth)
+        return lefth + 1; 
+    else
+        return righth + 1; 
+}
+
+int minimumDepth(BstNode* root)
+{
+  if(root == NULL) 
+    return 0;
+  if (root->left == NULL && root->right == NULL) 
+    return 1;
+  if(!root->left) 
+    return 1 + minimumDepth(root->right);
+  else if (!root->right) 
+    return 1 + minimumDepth(root->left);
+  return 1 + fmin(minimumDepth(root->right), minimumDepth(root->left));
+}
+
+int FindMax(BstNode* root)
+{
+  if(root == NULL)
+    return -1;
   while(root->right != NULL)
   {
-     root = root->next; 
+     root = root->right; 
   }
   return root->data; 
 }
@@ -87,10 +111,15 @@ int main()
    root = insert(root, 10);
    root = insert(root, 20); 
    root = insert(root, 25); 
+   root = insert(root, 30); 
    root = insert(root, 8);
-   root = insert(root, 12); 
+   root = insert(root, 12);
    int max = FindMax(root); 
    int min = FindMin(root); 
+   int height = findHeight(root); 
+   int depth = minimumDepth(root);
+   printf("The height of the tree is: %d\n", height); 
+   printf("The minimum depth of the tree is: %d\n", depth); 
    printf("The maximum value in the tree is %d!\nThe minimum value of the tree is %d!\n", max, min);
    int num = 0;
    printf("Enter a number to search in the tree: ");
