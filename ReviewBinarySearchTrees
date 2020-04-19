@@ -1,0 +1,37 @@
+/*
+ * Author: Sword Lord of the Lonely Peak
+ * Date: 2020/05/19
+ * Program: Review of Binary Search Trees
+ */
+ 
+/*****************************************************************************************************************************************
+Binary Search Trees: 
+=> A binary tree, in which for each node, the value of all the nodes in the left subtree are lesser or equal.
+   Additionally, the value of all the nodes in right subtree are greater. 
+=> Example: 
+
+       15               ----> ROOT!
+      /  \
+    10    20            
+   / \    / \
+  8  12  17 25
+  
+  +++In the left subtree, we can see that all of the nodes are lesser than the "root", which is 15!
+     For the node 10, the left subtree, which 8, is lesser than 10. In the other hand, the right subtree, which 12, is greater than 10. 
+  +++In the right subtree, we can see that all of the nodes are greater than the "root", which is 15! 
+     For the node 20, the left subtree, which 17, is lesser than 20. In the other hand, the right subtree, which 25, is greater than 20.
+  +++Thus this is a BINARY SEARCH TREE!
+  
+       15               ----> ROOT!
+      /  \
+    10    20            
+   / \    / \
+  8  16  17 25
+  
+  +++In the left subtree, we can see that all of the nodes are NOT lesser than the "root", which is 15!
+     For the node 10, the left subtree, which 8, is lesser than 10. In the other hand, the right subtree, which 16, is greater than 10. 
+  +++In the right subtree, we can see that all of the nodes are greater than the "root", which is 15! 
+     For the node 20, the left subtree, which 17, is lesser than 20. In the other hand, the right subtree, which 25, is greater than 20.
+  +++Thus this is NOT a BINARY SEARCH TREE! 
+
+*****************************************************************************************************************************************/
