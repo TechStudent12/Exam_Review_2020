@@ -24,15 +24,120 @@
  * => Example:
  *      int a[5]; //Initializes with 0s, because a global variable's default value is 0. 
  * Reading Array: 
+ * => It is better to use iterators and loops to read an array.
  * => Example (segment of code): 
  *      for(i=0; i<5; i++)
  *      {
  *         scanf(%d", &arr[i]);
  *      }
  * Printing of Array:
+ * => It is better to use iterators and loops to print an array.
  * => Example (segment of code):
  *      for(i=0; i<5; i++)
  *      {
  *        printf("%d", arr[i]);
  *      }
- *****************************************************************************************************/
+ * Examples of Array Programs:
+ * 1) How to print array elements: 
+ *    #include <stdio.h> 
+ *    int main()
+ *    {
+ *      int arr[5]; int i = 0;
+ *      for(i = 0; i<5; i++)  
+ *      {
+ *        printf("%d\n", arr[i]);
+ *      }
+ *     }
+ * 2) How to find the sum of all array elements:
+ *    #include <stdio.h>
+ *    int main()
+ *    {
+ *      int arr[5] = {4,5,6,7,8};
+ *      int i = 0, sum = 0;
+ *      for(i = 0; i<5; i++)
+ *      {
+ *         sum+=arr[i]; 
+ *      }
+ *      printf("The sum of the all the elements in the array is: %d\n", sum);
+ *    }
+ * 3) How to find largest element in an array:
+ *    #include <stdio.h>
+ *    int main()
+ *    {
+ *      int arr[5] = {5,6,7,8,9};
+ *      int i = 0, largest = 0;
+ *      for(i = 0; i<5; i++)
+ *      {
+ *        if(largest < arr[i})
+ *            largest = arr[i];
+ *      }
+ *      printf("The largest value in the array is: %d\n", largest); 
+ *    }
+ * 4) How to insert an element into an array: 
+ *    #include <stdio.h>
+ *    int main()
+ *    {
+ *      int key = 0; int loc = 0; int i = 0; int arr[50]; int n = 0; 
+ *      printf("Enter size: ");
+ *      scanf("%d", &n); 
+ *      printf("Enter %d elements: ", n);
+ *      for(i = 0; i<n; i++)
+ *      {
+ *        scanf("%d", arr[i]);
+ *      }
+ *      printf("Enter element to insert: "); 
+ *      scanf("%d", &key);
+ *      printf("Enter the location where you want to insert: ");     
+ *      scanf("%d", &loc);
+ *      for(i=n-1; i>=loc; i--)
+ *      {
+ *          //Shifts all values from (n-1), which is the last value to the location where the user wants to insert his value. 
+ *          arr[i+1] = arr[i]; 
+ *      }
+ *      //Insert the value into the location specified by the user. 
+ *      arr[loc] = key;
+ *     }
+ * 5) How to insert all the elements of one array into another: 
+ *    #include <stdio.h>
+ *    #define m 5
+ *    #define n 2
+ *    int main()
+ *    {
+ *      int i = 0; int loc = 0; int arr1[m] = {4,5,6,7,8}; int arr2[n] = {10,20};
+ *      printf("Enter the location to insert: ");
+ *      scanf("%d", &loc); 
+ *      //For loop is used to shift all elements of the first array!
+ *      for(i=(m-1); i>=loc; i++)
+ *      {
+ *        arr1[i+n] = arr1[i];
+ *      }
+ *      //For loop is used to insert all elements of the second array into the first array. 
+ *      for(i=0; i<n; i++)
+ *      {
+ *        arr1[loc+i] = arr2[i]; 
+ *      }
+ *     }
+ ***************************************************************************************************************************************/
+ * Strings:  
+ * => String is a one-dimensional character array.
+ * => Each character occupies 1 byte in c language. 
+ * Syntax:
+ * => Prototype of array: datatype Identity[size]; 
+ * => Prototype of string: char Identity[size]; 
+ * => Example:
+ *      char name[20]; //Store 19 characters. This is because the last character is a NULL character.
+ *      char s1[5] = "Hari";
+ *      char s1[4] = {'O', 'N', 'E'}; 
+ * Processing the elements: 
+ * => "%s" : format specifier for strings. It is used to read or write string elements. No need to use iterators. 
+ * => Example: 
+ *    #include <stdio.h>
+ *    int main()
+ *    {
+ *      char name[20];
+ *      printf("Enter your name: ");
+ *      scanf("%s", name); // We dont need & operator. NULL will be automatically appended at the end of the characters. 
+ *                         // ie. Hari\0. This is bacause it shows where the string ends, which is needed in printing the string. 
+ *      printf("Your name is: %s", name); 
+ *    }
+ ****************************************************************************************************/
