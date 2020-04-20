@@ -1,4 +1,10 @@
-/* Sorting Algorithms
+/*
+ * Author: Sword Lord of the Lonely Peak
+ * Date: 2020/05/20
+ * Program: Sorting Algorithm Code
+ */
+/***************************************************************************************************************************************
+ * Sorting Algorithms
  * => Sorting is arraging the elements in a list or collection in increasing or decreasing order of some property. 
  * => Unsorted: Linear Search (Westart at the first element of the list and keep scaning the whole list until we get the element we are looking for).
  *    Size = n -----> n comparisions
@@ -18,6 +24,7 @@
  *    5) Recursive or Non-recursive
  *        - Some sorting algorithm like quick sort or merge sort are recursive.
  *        - While others like insertion sort or selection sort are non-recursive. 
+ ***************************************************************************************************************************************
  * Selection Sort: 
  * => Finds the minimum element at each step.
  * => The time complexity of this algorithm is O(n^2).
@@ -49,6 +56,7 @@
  *       for(int i = 0; i < 6; i++)
  *         printf("%d ", a[i]); 
  *     }
+ ****************************************************************************************************************************************
  * Bubble Sort:
  * => Scans list from left to right (multiple times).
  * => Compares element at particular position with the adjacent element at the next position.  
@@ -103,6 +111,7 @@
  *      printf("\nOutput Array: ");
  *      display();
  *    }
+ ***************************************************************************************************************************************
  * Insertion Sort:
  * => Code: 
  *    #include<stdio.h>
@@ -135,4 +144,4 @@
  *        }
  *        return 0;
  *       }
- */
+ ***************************************************************************************************************************************/
