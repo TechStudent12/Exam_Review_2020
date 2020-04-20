@@ -278,11 +278,11 @@ int main()
    printf("The maximum value in the tree is %d!\nThe minimum value of the tree is %d!\n", max, min);
    printf("**Breadth approach**\n\tLevel Order traversal: ");
    levelOrder(root); 
-   printf("\n**Depth Approach**\n\tPreorder traversal(DLR - DATA LEFT RIGHT): ");
+   printf("\n**Depth Approach**\n\tPreorder traversal (DLR - DATA LEFT RIGHT): ");
    preOrder(root); 
    printf("\n\tInorder traversal (sorted binary tree)(LDR - LEFT DATA RIGHT): ");
    inorder(root);
-   printf("\n\tPost Order traversal(LRD - LEFFT RIGHT DATA): ");
+   printf("\n\tPost Order traversal (LRD - LEFFT RIGHT DATA): ");
    postOrder(root);
    printf("\n");
    int num = 0;
