@@ -4,7 +4,7 @@
  * Program: Strings and Array Review
  */
  
-/***************************************************************************************************** 
+/*************************************************************************************************************************************** 
  * Arrays:
  * => Primative datatype can only store one value at a time. It cannot store mutiple values!
  * => This is why we use an array! With an array, we can store n number of elements (more than 1 element) using one variable. 
@@ -257,7 +257,7 @@
  *            printf("The substring is: %s\n", ret);
  *            return(0);
  *        }
- ****************************************************************************************************/
+ ****************************************************************************************************************************************/
  //Example Program 1 ====> Find all the permutations of a string:
  //Code:
       #include <stdio.h>
@@ -297,3 +297,5 @@
         printf("All possible permutations:\n");
         perm(str,0,n-1);
       }
+
+****************************************************************************************************************************************/
