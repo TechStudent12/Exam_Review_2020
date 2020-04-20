@@ -1,4 +1,5 @@
-/*  2017 APS105 EXAM!
+/****************************************************************************************************************************************
+    2017 APS105 EXAM SOLUTIONS!
     Question 1 [2 Marks]
     Find and correct all compile-time errors (mistakes that would cause compilation or that would
     cause the 'build' to fail) in the following C program. Your answer should both identify what the
@@ -487,3 +488,5 @@
             next->link = firstList; 
             return link; 
         }
+        
+****************************************************************************************************************************************/
