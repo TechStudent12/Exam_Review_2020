@@ -43,6 +43,7 @@
  *    +++In depth-first approach (also called preorder traversal (Data Left Right)), we would visit the nodes in this order: A B D E H I C F G K
  *    => Example (Inorder traversal): 
  *
+ *       //INORDER traversal of BINARY SEARCH TREE will give you a SORTED LIST!
  *       //Remember this sequence! LEFT ROOT RIGHT
  *       //LDR stands for left, data, right! Thus, we need to travel from left to right in this approach starting from the left subtree!
  *
