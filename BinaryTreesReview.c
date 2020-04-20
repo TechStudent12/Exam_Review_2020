@@ -59,7 +59,8 @@
  +++Now if all levels of the binary tree are completelely filled, then it is called a PERFECT BINARY TREE (such as seen above)!
  +++The maximum number of nodes in a binary tree with a height h is equal to 2^0 + 2^1 + .... + 2^h.
     This can also be written as 2^(h+1) - 1 or 2^(number of levels) - 1.
-    To find height of a binary tree with n number of nodes, we do the following: h = log2(n+1) - 1 
+    To find the maximum height of a binary SEARCH tree with n number of nodes, we do the following: h = n-1
+    To find minimum height of a binary SEARCH tree with n number of nodes, we do the following: h = log2(n+1) - 1 
     We can also to do the following to find the height of a complete binary tree: floor(log2(n)). 
     HEIGHT OF EMPTY TREE IS -1!
     HEIGHT OF TREE WITH 1 NODE is 0!
