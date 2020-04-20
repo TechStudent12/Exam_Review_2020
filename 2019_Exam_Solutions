@@ -1,0 +1,78 @@
+/*  2019 APS105 EXAM!
+    Question 1 [2 Marks]
+    Find and correct all compile-time errors (mistakes that would cause compilation or that would
+    cause the 'build' to fail) in the following C program. Your answer should both identify what the
+    error is, and what the correction should be. Marks will be deducted if you identify correct items
+    as compile-time errors. 
+    
+        Incorrected Version:
+        
+        #include <stdio.h>
+        int main (void)
+        {
+            int j, k;
+            int *i = &j;
+            for (*i=0; *i < 10; *i++) //This line contains runtime errors. 
+                                                    //The code means "take the contents from where i points at, then increment i". This is not what we want!
+                                                    //The error is that we are trying increment the pointer i by using the dereferencing operator without putting it between parenthesis.
+                                                    //This does not work, because in *i++ the pointer is incremented and not the value that is pointed by the pointer. 
+                                                    //Thus, the value that i points to will always remain 0.
+                                                    //In order for i to point to the value j, we would need *i in between parenthesis like so (*i)++;
+                                                    //This will work, because the operator are read from right to left. Parenthesis take precedence, thus the *i will be read first and not seperately!
+            {
+                scanf("%d", &k);
+                printf("%d\n", (*i) * (*i) * (*i));
+            }
+        }
+         
+        Corrected Version: 
+        
+        #include <stdio.h>
+        int main (void)
+        {
+            int j, k;
+            int *i = &j;
+            for (*i = 0; *i<10; (*i)++)//Error is fixed by putting *i in parenthesis!
+            {
+                scanf("%d", &k);
+                printf("%d\n", (*i) * (*i) * (*i));
+            }
+        }
+        
+   Question 2 [2 Marks]
+   Write a single C statement that declares an mt variable randomCho ice, and initializes it with a
+   number that is randomly selected from the following set: -5, 5, 0, -10, 10. 
+   
+   #include <stdio.h> 
+   #include <stdlib.h> 
+
+   int main()
+   {
+      int arr[5] = {-5,5,0,-10,10};
+      int randomIndex = rand() % 5; 
+      int randomChoice = arr[randomIndex]; //This line is the answer!
+      printf("Reference: %d\n", randomChoice);
+      return 0; 
+   }
+   
+   Question 3 [2 Marks]
+   The following binary search tree was constructed by inserting a sequence of values into an empty tree:
+   
+                    5
+                  /   \
+                3      9
+               /      / \
+              1      7  15
+                    /   / \
+                   6   12  19
+   
+   Which of the following insert sequences will not produce the above binary search tree: 
+   
+      A: 5 3 9 1 7 15 6 12 19
+      B: 5 3 1 9 15 19 7 6 12
+      C: 5 9 7 6 15 12 3 19 1
+      D: 5 9 6 7 15 12 19 3 1
+      E: 5 9 3 7 1 15 19 12 6 
+
+   Answer: 
+   
