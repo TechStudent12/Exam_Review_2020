@@ -121,6 +121,15 @@ bool search(BstNode* root, int data)
         return search(root->right, data);         
 }
 
+BstNode* FindMin2(BstNode* root)
+{
+    while(root->left!=NULL)
+    {
+        root=root->left; 
+    }
+    return root; 
+}
+
 int FindMin(BstNode* root)
 {
   if(root == NULL)
@@ -324,7 +333,7 @@ BstNode* deleteNode(BstNode* root, int data)
     //CASE 3: 2 children
     else
     {
-      struct BstNode* temp = fmin(root->right); 
+      struct BstNode* temp = FindMin2(root->right); 
       root->data = temp->data; 
       root->right = deleteNode(root->right,temp->data); 
     }
@@ -350,9 +359,9 @@ int main()
    int height = findHeight(root); 
    int depth = minimumDepth(root);
    if(isBinarySearchTree(root))
-     printf("This tree is a binary search tree!");
+     printf("This tree is a binary search tree!\n");
    else
-     printf("This tree is not a binary search tree!);
+     printf("This tree is not a binary search tree!\n");
    printf("The height of the tree is: %d\n", height); 
    printf("The minimum depth of the tree is: %d\n", depth); 
    printf("The maximum value in the tree is %d!\nThe minimum value of the tree is %d!\n", max, min);
@@ -366,12 +375,12 @@ int main()
    postOrder(root);
    printf("\n");
    int num = 0, numDelete = 0;
-   printf("Enter the number you want to delete from the tree: );
+   printf("Enter the number you want to delete from the tree: ");
    scanf("%d", &numDelete); 
    deleteNode(root,numDelete); 
-   printf("\n\t**NEW**Inorder traversal (sorted binary tree)(LDR - LEFT DATA RIGHT): ");
+   printf("\t**NEW**Inorder traversal (sorted binary tree)(LDR - LEFT DATA RIGHT): ");
    inorder(root);
-   printf("Enter a number to search in the tree: ");
+   printf("\nEnter a number to search in the tree: ");
    scanf("%d", &num);
    if(search(root, num) == true)
        printf("Number has been found!");
