@@ -1,0 +1,489 @@
+/*  2017 APS105 EXAM!
+    Question 1 [2 Marks]
+    Find and correct all compile-time errors (mistakes that would cause compilation or that would
+    cause the 'build' to fail) in the following C program. Your answer should both identify what the
+    error is, and what the correction should be. Marks will be deducted if you identify correct items
+    as compile-time errors. 
+    
+        Incorrected Version:
+        
+        #include <stdio.h>
+        int main (void)
+        {
+            int j, k;
+            int *i = &j;
+            for (*i=0; *i < 10; *i++) //This line contains runtime errors. 
+                                                    //The code means "take the contents from where i points at, then increment i". This is not what we want!
+                                                    //The error is that we are trying increment the pointer i by using the dereferencing operator without putting it between parenthesis.
+                                                    //This does not work, because in *i++ the pointer is incremented and not the value that is pointed by the pointer. 
+                                                    //Thus, the value that i points to will always remain 0.
+                                                    //In order for i to point to the value j, we would need *i in between parenthesis like so (*i)++;
+                                                    //This will work, because the operator are read from right to left. Parenthesis take precedence, thus the *i will be read first and not seperately!
+            {
+                scanf("%d", &k);
+                printf("%d\n", (*i) * (*i) * (*i));
+            }
+        }
+         
+        Corrected Version: 
+        
+        #include <stdio.h>
+        int main (void)
+        {
+            int j, k;
+            int *i = &j;
+            for (*i = 0; *i<10; (*i)++)//Error is fixed by putting *i in parenthesis!
+            {
+                scanf("%d", &k);
+                printf("%d\n", (*i) * (*i) * (*i));
+            }
+        }
+        
+   Question 2 [2 Marks]
+   Write a single C statement that declares an mt variable randomCho ice, and initializes it with a
+   number that is randomly selected from the following set: -5, 5, 0, -10, 10. 
+   
+   #include <stdio.h> 
+   #include <stdlib.h> 
+
+   int main()
+   {
+      int arr[5] = {-5,5,0,-10,10};
+      int randomIndex = rand() % 5; 
+      int randomChoice = arr[randomIndex]; //This line is the answer!
+      printf("Reference: %d\n", randomChoice);
+      return 0; 
+   }
+   
+   Question 3 [2 Marks]
+   The following binary search tree was constructed by inserting a sequence of values into an empty tree:
+   
+                    5
+                  /   \
+                3      9
+               /      / \
+              1      7  15
+                    /   / \
+                   6   12  19
+   
+   Which of the following insert sequences will not produce the above binary search tree: 
+   
+      A: 5 3 9 1 7 15 6 12 19
+      B: 5 3 1 9 15 19 7 6 12
+      C: 5 9 7 6 15 12 3 19 1
+      D: 5 9 6 7 15 12 19 3 1
+      E: 5 9 3 7 1 15 19 12 6 
+
+   Answer: D
+   
+   Question 4 [2 Marks]
+   In a doubly linked list, each node has two pointers: one called next which points to the next node
+   in the list, and one called prev which points to the previous node in the list, as in the following
+   declaration:
+   
+       struct node {
+        mt key;
+        struct node *next;
+        struct node *prev;
+       }*n, *p;
+       
+   Consider a part of a doubly linked list as shown below where the two variables, n and p, have
+   been set to point to nodes as shown in the figure: 
+                 
+            n => |   |   |   |   <--   p => |   |   |   |   -->   |   |   |   | 
+                                 -->                        <--
+   
+   Which of the following expression(s) does not refer (point) to the third, right-most node in the
+   diagram above?
+   
+        A: p->next
+        B: n->next->next
+        C: p->next->prev
+        D: n->next->prev->next->next
+        E: p->next->prev->next 
+   
+   Answer: C
+   
+   Question 5 [2 Marks] 
+   Consider the following array with exactly 15 elements:
+   
+                            1  2  3  4  5  6  7  8  9  10  11  12  13  14  15
+   
+   Suppose we are doing a binary search on the array.
+   Circle all elements that would not be found after examining three numbers if we were searching
+   for the value of the target element using binary search. (An element is considered "examined" if
+   it is compared against the value being searched for.) 
+   
+   Answer: 1 2 3 4 5 6 7 9 10 13 14 15
+           This goes like this: 
+   
+           Indexes:  0  1  2  3  4  5  6  7  8  9   10  11  12  13  14
+           Elements: 1  2  3  4  5  6  7  8  9  10  11  12  13  14  15
+           
+           In binary search, we have both a max and min value. 
+           Our first guess would be (0+14)/2, which is the value at index 7. 
+           We compare that value against the target element. 
+           If it greater, then our next guess is 7+1 = 8. 
+           So then we add this value 8 to 14 and divide it by 2 to get our average. 
+           Our average is 11, so we compare our target value to index 11. 
+               If it greater, then our next guess is 11+1 = 12. 
+               So then we add this value 12 to 14 and divide it by 2 to get our average. 
+               Our average is 13, so we compare our target value to index 13 (round the value down). 
+               If it less, then our next guess is 11-1 = 10. 
+               So then we add this value 10 to 14 and divide it by 2 to get our average. 
+               Our average is 12, so we compare our target value to index 12 (round the value down). 
+           If it less, then our next guess is 7-1 = 6. 
+           So then we add this value 6 to 14 and divide it by 2 to get our average. 
+           Our average is 11, so we compare our target value to index 10.
+               If it greater, then our next guess is 10+1 = 11. 
+               So then we add this value 11 to 14 and divide it by 2 to get our average. 
+               Our average is 12.5, so we compare our target value to index 12 (round the value down). 
+               If it less, then our next guess is 10-1 = 9. 
+               So then we add this value 9 to 14 and divide it by 2 to get our average. 
+               Our average is 11.5, so we compare our target value to index 11 (round the value down). 
+ 
+   Question 6 [3 Marks]
+   Recall the cocktail sort method that you used in Lab 9 in this course, and consider the following
+   sequence of numbers:
+                                                 8 6 5 3 9 12
+   Give the result of the first three passes of the cocktail sort algorithm on these numbers, assuming
+   that the sorted order is to have the lowest number on the left, and that the sorting algorithm starts
+   on the left end of the above numbers. A pass is one traversal through the set of numbers. 
+   
+   Answer: 
+          ***Remember that cocktail sort is sorting algorithm similar to bubble sort.
+          
+          Each iteration of the algorithm is broken up into 2 stages:
+          
+          1.  The first stage loops through the array from left to right, just like the Bubble Sort. 
+              During the loop, adjacent items are compared and if value on the left is greater than the value on the right, then values are swapped. 
+              At the end of first iteration, largest number will reside at the end of the array.
+          
+          2.  The second stage loops through the array in opposite direction starting from the item just before the most recently sorted item, and moving back to the start of the array. 
+              Here also, adjacent items are compared and are swapped if required.
+             
+          After Pass 1: 6 5 3 8 9 12 -----> First Pass Forward
+                        3 6 5 8 9 12 -----> First Pass Backward
+                        3 6 5 8 9 12 -----> Final Result of First Pass
+                        
+          After Pass 2: 3 5 6 8 9 12 -----> Second Pass Forward ====> List is already sorted at this point!
+                        3 5 6 8 9 12 -----> Second Pass Backward
+          
+          After Pass 3: 3 5 6 8 9 12 -----> Third Pass Forward
+                        3 5 6 8 9 12 -----> Third Pass Backward
+ 
+    Question 8 [8 Marks] 
+    Write a C language function called rotateAndFindLongest that does two things:
+    It rotates the values of four integer variables that exist in the calling function. 
+     (a) For example, if the value of the four variables in the calling function were 34, 28, 66, 19 before the function
+         was called, the variable values would be 19, 34, 28, 66 after the function was called.
+     (b) The function should return .the value of the largest of the all four variables. 
+     
+    Answer: 
+    
+       #include <stdio.h> 
+       #include <stdlib.h> 
+       
+        int rotateAndFindLongest(int a, int b, int c, int d)
+        {
+            int max = 0; 
+            int temp1, temp2, temp3, temp4; 
+            while(max < d)
+            {
+                temp1 = a; //34
+                temp2 = b; //28
+                temp3 = c; //66
+                temp4 = d; //19
+                a = d; 
+                b = temp1;
+                c = temp2; 
+                d = temp3; 
+                max = d; 
+            }
+            printf("%d %d %d %d\n", a, b, c, d);
+            return max; 
+        }
+        int main()
+        {
+            int a = 34, b = 28, c = 66, d = 19; 
+            printf("%d", rotateAndFindLongest(a,b,c,d));
+        }
+   
+   Question 9 [7 Marks] 
+   This question has several, somewhat related, parts:
+     (a) Write the C-language code to declare four variables with the following types. You can freely
+         choose the name of your variables.
+            
+            A 32 bit signed integer
+            A double
+            A char
+            An array of bool of size 10 
+            
+            Answer: 
+                    signed int numSigned;
+                    double numDouble; 
+                    char arrayChar[100]; 
+                    bool arrayBol[10]; 
+            
+     (b) Write the complete C-language code that declares a struct, called myStruct, that contains all
+         four of the types from part (a) as members. 
+         
+         Answer: 
+                struct myStruct{
+                   signed int numSigned;
+                   double numDouble; 
+                   char arrayChar[100]; 
+                   bool arrayBol[10]; 
+                };
+                
+     (c) Write the C-language code for a new version of the struct in part (b), called myLLStruct, that
+         would enable it to be used as a node in a linked list.
+         
+         Answer: 
+                typedef struct myLLStruct{
+                   signed int numSigned;
+                   double numDouble; 
+                   char arrayChar[100]; 
+                   bool arrayBol[10]; 
+                   LLStruct* link; 
+                }LLStruct;
+                LLStruct* head = NULL; 
+                
+    (d) Write a single C statement to declare an array (called myArrayStruct) of size 100 of the struct
+        declared in part (b) - i.e of the struct myStruct. 
+        
+        Answer: 
+                struct myStruct myArrayStruct[100]; 
+                
+    (e) Write several lines of C-language code that will initialize the first 50 integers in the above array
+        (from part (d)) to the value 1000, and the last 50 doubles to be 0.5, and every boolean value in the
+        array to be false. All other values in the array should not be initialized.  
+        
+        Answer: 
+        
+        #include <stdio.h>
+        #include <stdlib.h>
+        #include <stdbool.h>
+        
+           struct myStruct{
+             signed int numSigned;
+             double numDouble; 
+             char arrayChar[100]; 
+             bool arrayBol[100]; 
+           };
+        
+           int main()
+           {
+            struct myStruct myArrayStruct[100]; 
+            myArrayStruct[100].arrayBol[10]= malloc(sizeof(myArrayStruct));
+            int i = 0;
+            int size = 100; 
+            for(i = 0; i < size; i++)
+            {
+               myArrayStruct[i].arrayBol[i] = 0; 
+               if(i <= 50)
+                  myArrayStruct[i].numSigned = 1000;
+               if(i > 50)
+                  myArrayStruct[i].numDouble = 0.5; 
+            }
+            for(i=0; i<size;i++)
+            {    
+                if(i <= 50)
+                    printf("Integer: %d\n", myArrayStruct[i].numSigned);
+                if(i > 50)
+                    printf("Double: %lf\n", myArrayStruct[i].numDouble); 
+                printf("Bool: %d\n", myArrayStruct[i].arrayBol[i]);
+            }
+            return 0; 
+          }
+    
+    Question 10[8 marks]
+    You are to write a function that sets a rectangular portion of a 2-dimensional array to a specific
+    value. The function takes the following as input parameters: an integer 1000x1000 2-dimensional
+    array called A, four integer parameters named rowStart, rowEnd, colstart, and colEnd
+    and an integer parameter value. 
+    The purpose of the function is to set the value of the array elements in A beginning with
+    A[rowStart][colStart] and ending with [rowEnd][colEnd] to be the value value. 
+    However, this function is to he used by students in a first year C programming course, and those
+    students are well-known for writing code that has errors. For example, they often attempt to
+    access elements of an array outside of its defined bounds, among other problems. Therefore,
+    your function should check that the inputs to the function are correct before performing the above
+    operation. You must determine, through the reading of this question, what would make the inputs
+    rowStart, rowEnd, colStart, colEnd and value correct. (You can assume that the array
+    A is passed in correctly.)
+    The function should return a hoolean result that is set to true if the inputs are valid, and false if
+    they are not. In the case that the inputs are not valid, the setting of the values of the array should
+    not he attempted.
+    IMPORTANT: Your solution, in addition to the code for the function described above, should
+    also show how you would call this function from the main function, and make use of its return
+    value. That is, you should show the call to the function (with appropriately declared variables,
+    and gathering input from the user for rowStart, rowEnd, colStart, colEnd and value)
+    and make appropriate use of the returned boolean value. 
+    
+    Answer: 
+    
+        void myFunc(int A[1000][1000], int rowStart, int rowEnd, int colStart, int colEnd, int value)
+        {
+            int i = 0, j = 0; 
+            if(rowStart == 0 || rowStart < 0 || colStart == 0 || colStart < 0 || rowEnd >= 1000 || colEnd >= 1000 || rowEnd < 0 || colEnd < 0)
+            {
+                printf("ERROR! Incorrect values for starting variables!");
+                exit(0); 
+            }
+            for(i = rowStart; i < rowEnd; i++)
+            {
+                for(j = colStart; j < colEnd; j++)
+                {
+                    A[i][j] = value; 
+                }
+            }
+        }
+        
+    Question 11 [10 Marks]
+    Write a function char *delete SubSt ring (char *source, char *substring) that takes
+    two strings called source and substring as its parameters. It should return a new dynamically
+    allocated string that is constructed from the strings source and substring. The newly created
+    and returned string should be the same as the source string, but with the first occurrence of the
+    string substring removed. For example, if the string source has the value "my toronto",
+    and the string substring has the value "to", the function will return the string "my ronto".
+    You may use any of the string-related functions in the C standard library, and may assume that
+    string. h has been included. 
+    
+    Answer: 
+    
+        #include <stdio.h>
+        #include <string.h> 
+        #include <stdlib.h> 
+
+        char *removeSubstr(char *source, char *substring) 
+        {
+            char *match;
+            int len = strlen(substring);
+            while ((match = strstr(source, substring))) 
+            {
+                *match = '\0';
+                strcat(source, match+len);
+                match++;
+            }
+            return source;
+        }
+
+        int main(int argc, const char *argv[]) 
+        {
+            char test[] = "Toronto";
+            printf("Before deleting substring: %s\n", test);
+            char *string = removeSubstr(test, "Tor");
+            printf("After deleting substring: %s\n", string);
+            return 0;
+        }
+        
+    Question 12 [10 Marks]
+    Recall that, in a binary tree, a node that has no children is called a leaf. Given the following node
+    declaration:
+            struct treeNode
+            {
+                int value;
+                struct treeNode *left;
+                struct treeNode *right;
+            };
+    Write function called treeLeafCount() that takes one struct treeNode *root parameter
+    and returns the number of leaves in the tree pointed to by root. You may not use global variables
+    in your solution. 
+    
+    Answer:
+    
+        int treeLeafCount(struct treeNode *root)
+        {
+            if(root == null)
+              return 0; 
+            else if(root->left == NULL && root->right == NULL)
+              return 1;   
+            else
+              return (treeLeafCount(root->left)+treeLeafCount(root->right)); 
+        }
+
+    Question 13 [10 Marks]
+    QuickSort is considered one of the fastest sorting algorithms in practice. However, it turns out that
+    Insertion Sort is faster than QuickSort for smaller arrays; e.g., for arrays with 10 or fewer elements.
+    Because of this, many implementations use a combination of both algorithms: they use QuickSort
+    when the size of the array segment to be sorted is larger than 10, but switch over to Insertion Sort
+    when the size of the array segment to be sorted is less than or equal to 10.
+    Your job is to implement QuickSort for an array of doubles that at switches over to
+    Insertion Sort for the small array segments with less than or equal to 10 elements. To make your
+    job easier, you can assume the following function is available:
+                     int selectPivotAndpartition (double list[], int from, int to);
+    This function processes the segment of array a from index from to index to. It selects a pivot in a
+    smart way, and then partitions all elements in the [from, to] segment so that all elements less
+    than or equal to pivot are located to the left of the pivot element and all elements greater than or
+    equal to pivot are located to the right of the pivot element. The function then returns the index of
+    the array where the pivot is located. Hence, after you call
+                            int pindex = selectpivotAndPartition(list, from, to);
+    you are guaranteed that
+                            list [i] <= list[pindex] when from <= i <= pIndex
+    and
+                             list[i] >= list [pindex] when pindex <= i <= to 
+
+    Answer:
+    
+        void quickSort (double list[], int from, int to)
+        {
+            int pivot; 
+            while(from < to)
+            {
+                if(from-to < 10)
+                {
+                    insertionSort(list, from, to); 
+                    break;
+                }
+                else if(from<to)
+                {
+                    pivot = selectPivotAndPartition(list, from, to); 
+                    if(pivot-(from<to)-pivot)
+                    {
+                        quicksort(list,from,pivot-1);
+                        from = pivot+1; 
+                    }
+                    else
+                    {
+                        quicksort(list,pivot+1,to);
+                        to = pivot-1; 
+                    }
+                 }
+                 else
+                    return; 
+             }
+        }
+    
+    Question 14 [10 Marks]
+    The following C structure is used to define each node in a linked list:
+            typedef struct node
+            {
+                int data;
+                struct *link;
+            }Node;
+    Write a C function, called buildJoinedList, that takes two linked lists called firstList and
+    secondList as its parameters, and returns a new list that joins the two lists, with secondList
+    at the front. Both firstList and secondList are pointers to the first node of a linked list. The
+    function should return a pointer to a new list that is dynamically allocated.
+    
+    Note that the existing linked lists pointed to by firstList and secondList must not be modified in any way.
+    
+    An example of how the function should work is as follows: if firstList points to a linked list
+    containing nodes storing the numbers 1, 2, 3, 4, 5 and secondList containing the numbers 6, 7, 8, 9, 10, then the newly created list returned by the buildJoinedList function
+    should contain nodes storing the numbers 6, 7, 8, 9, 10, 1, 2, 3, 4, 5. 
+    
+    Answer: 
+    
+        Node* buildJoinedList(Node* firstList, Node* secondList)
+        {
+            struct node* next; 
+            struct node* list = NULL;
+            list = secondList;
+            next = list; 
+            while(next->link!=NULL)
+            {
+                next = next->link;
+            }
+            next->link = firstList; 
+            return link; 
+        }
