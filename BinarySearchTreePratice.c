@@ -135,6 +135,7 @@ int FindMin(BstNode* root)
 //Height of a tree is the height of the root node. 
 //Height of a tree with 1 node is 0. 
 //Depth of a node is the number of edges in path from root to that node. 
+//Height function that is used here is to find the height of a full binary tree (a binary tree that has all its nodes). 
 int findHeight(BstNode* root)
 {
     if(root == NULL)
