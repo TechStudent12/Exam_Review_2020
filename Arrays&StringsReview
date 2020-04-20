@@ -149,7 +149,39 @@
  *    }
  * String Functions:
  * => Include the library called string.h to access the string functions. 
- *   1) strstr()
+ *   1) strcat()
+ *      +++Prototype: char* strcat(char* str1, const char* str2); 
+ *      +++strcat function appends the content of string str2 at the end of string str1. 
+ *      +++Example: 
+ *         #include <stdio.h> 
+ *         #include <string.h> 
+ *         int main()
+ *         {
+ *           char str1[100], str2[100];
+ *           strcpy(str1, "Welcome to");
+ *           strcpy(str2, "our Academy"); 
+ *           strcat(str1, str2); 
+ *           printf("%s", str1);
+ *           return 0; 
+ *        }
+ *      +++CAUTION! 
+ *         Undefined behaviour can be observed if size of str1 isn't long enough to accomodate the addtional characters of str2. 
+ *         This is because you are trying to add more characters than the memory allocated. 
+ *      +++strncat is a safer version of strcat.
+ *      +++It appends the limited numbers of characters specified by the third arguments. 
+ *      +++Note: strncat automatically adds NULL character at the end of the resultant. 
+ *      +++Example:
+ *         #include <string.h>
+ *         #include <stdio.h> 
+ *         int main()
+ *         {
+ *            char str1[5], str2[100];
+ *            strcpy(str1, "He"); 
+ *            strcpy(str2, "llo!");
+ *            strncat(str1, str2, sizeof(str1) - strlen(str1) - 1);
+ *            printf("%s", str1);
+ *            return 0; 
+ *         }
  *   2) strcmp()
  *      +++Prototype: int strcmp(const char* s1, const* char* s2);
  *      +++Compares two strings to one another (ie. s1 and s2). 
@@ -163,14 +195,14 @@
  *      +++It will not count the NULL character, which there at the end of the string. 
  *      +++It will always calculate the length of the string and NOT the length of the array. 
  *      +++Example: 
- *          #include <stdio.h>
- *          #include <string.h>
- *          int main()
- *          {
- *            char *str = "Hello World"; // char str[100] = "Hello World"; 
- *            printf("%d", strlen(str));
- *            return 0; 
- *          }
+ *         #include <stdio.h>
+ *         #include <string.h>
+ *         int main()
+ *         {
+ *           char *str = "Hello World"; // char str[100] = "Hello World"; 
+ *           printf("%d", strlen(str));
+ *           return 0; 
+ *         }
  *   4) strcpy()
  *      +++This function is also called string copy function. 
  *      +++Prototype: char* strcpy(char* destination, const char* source);
@@ -196,19 +228,35 @@
  *         This why to avoid this, we use strncpy function!
  *      +++Prototype of strncpy: char* strncpy(destination, source, sizeof(destination)); 
  *      +++Example of strncpy: 
- *          #include <stdio.h> 
- *          #include <string.h>
- *          int main()
- *          {
+ *         #include <stdio.h> 
+ *         #include <string.h>
+ *         int main()
+ *         {
  *            char str1[6] = "Hello";
  *            char str2[4];
  *            strncpy(str2, str1, sizeof(str2)); //NULL character is not copied to destination, which is str2. 
  *            str2[sizeof(str2) - 1] = '\0'; //Need to add NULL character at the end of the string. 
  *            printf("%s", str2);
  *            return 0; 
- *          }
+ *         }
  *      +++strncpy will leave the string str2(destination) without a termination NULL character. 
-           If the size of str1 is equal to or greater than the size of str2(destination). 
+ *         If the size of str1 is equal to or greater than the size of str2(destination).
+ *  5) strstr()
+ *     +++Prototype:char* strstr(const char* haystack, const char* needle);
+ *        Haystack is the main C string to be scanned. 
+ *        Needle is the small string to be searched within the haystack string. 
+ *     +++Example:
+ *        #include <stdio.h>
+ *        #include <string.h>
+ *        int main () 
+ *        {
+ *            const char haystack[20] = "TutorialsPoint";
+ *            const char needle[10] = "Point";
+ *            char *ret;
+ *            ret = strstr(haystack, needle);
+ *            printf("The substring is: %s\n", ret);
+ *            return(0);
+ *        }
  ****************************************************************************************************/
  //Example Program 1 ====> Find all the permutations of a string:
  //Code:
