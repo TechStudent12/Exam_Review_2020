@@ -1,0 +1,38 @@
+/* Arrays:
+ * => Primative datatype can only store one value at a time. It cannot store mutiple values!
+ * => This is why we use an array! With an array, we can store n number of elements (more than 1 element) using one variable. 
+ * => However, all the values that are stored in an array must of the same datatype. 
+ * => Arrays only store homogenous data elements within it. 
+ * => An array is an aggregated or derived datatype.
+ * Declaration of array: 
+ * => Prototype: datatype Identity [Size]; 
+ * => Example: 
+ *      int a[5]; 
+ * => We can process arrays using index numbers. Index number starts from 0 to size-1.
+ * => Example:
+ *      int a[5]; //Size is 5! The index numbers for this array are 0 1 2 3 4
+ * => Array variable is called internal pointer variable! It always holds the base address of the array. 
+ * Local declarations:
+ * => Local variables in the c language initializes with "garbage" values if you don't initialize it with at least one element. 
+ * => Example:
+ *      int a[5]; //Initializes with "garbage" values!
+ *      int a[5] = {10,20,30,40,50}; //Initializes with the values given within the braces!
+ *      int a[5] = {10,20}; //Initliazes with values of 10 and 20 in index 0 and 1, while the rest of the indexes (1-4) are filled with value of 0 or NULL. 
+ * => All values in an array can be initialized directly!
+ * Global declarations:
+ * => A global variable is a vriable that is declared outside of all the functions in the program.  
+ * => Example:
+ *      int a[5]; //Initializes with 0s, because a global variable's default value is 0. 
+ * Reading Array: 
+ * => Example (segment of code): 
+ *      for(i=0; i<5; i++)
+ *      {
+ *         scanf(%d", &arr[i]);
+ *      }
+ * Printing of Array:
+ * => Example (segment of code):
+ *      for(i=0; i<5; i++)
+ *      {
+ *        printf("%d", arr[i]);
+ *      }
+ *****************************************************************************************************/
