@@ -258,23 +258,101 @@ void levelOrder(BstNode* root)
     int i; 
     for (i=1; i<=h; i++) 
         printGivenLevel(root, i); 
-} 
+}
+
+//Check if a given binary tree is BST. Does not really apply here, because all of the trees are binary search trees!
+bool isSubTreeLesser(BstNode* root, int value)
+{
+  if(root == NULL)
+    return true;
+  if(root->data <= value && isSubTreeLesser(root->left, value) && isSubTreeLesser(root->right, value))
+    return true; 
+  else
+    return false; 
+}
+
+bool isSubTreeGreater(BstNode* root, int value)
+{
+  if(root == NULL)
+    return true;
+  if(root->data > value && isSubTreeGreater(root->left, value) && isSubTreeGreater(root->right, value))
+    return true; 
+  else
+    return false; 
+}
+
+bool isBinarySearchTree(BstNode* root)
+{
+  if(root == NULL)
+    return true; 
+  if(isSubTreeLesser(root->left, root->data) && isSubTreeGreater(root->right, root->data) && isBinarySearchTree(root->left) && isBinarySearchTree(root->right))
+    return true; 
+  else
+    return false; 
+}
+
+//Delete a node from the binary search tree!
+BstNode* deleteNode(BstNode* root, int data)
+{
+  if(root == NULL)
+    return root; 
+  else if(data < root->data)
+    root->left = deleteNode(root->left, data); 
+  else if(data > root->data)
+    root->right = deleteNode(root->right, data); 
+  else
+  {
+    //CASE 1: No child!
+    if(root->left == NULL && root->right == NULL)
+    {
+      free(root);
+      root = NULL; 
+    }
+    //CASE 2: One child
+    else if(root->left == NULL)
+    {
+      struct BstNode* temp = root;
+      root = root->right; 
+      free(temp);
+    }
+    else if(root->right == NULL)
+    {
+      struct BstNode* temp = root;
+      root = root->left; 
+      free(temp);
+    }
+    //CASE 3: 2 children
+    else
+    {
+      struct BstNode* temp = fmin(root->right); 
+      root->data = temp->data; 
+      root->right = deleteNode(root->right,temp->data); 
+    }
+  }
+  return root; 
+}
 
 int main() 
 {
    struct BstNode* root; //To store address of root node. 
    root = NULL; // setting tree as empty
-   root = insert(root, 15); 
-   root = insert(root, 10);
-   root = insert(root, 20); 
-   root = insert(root, 25); 
-   root = insert(root, 30); 
-   root = insert(root, 8);
+   root = insert(root, 5); 
+   root = insert(root, 3);
+   root = insert(root, 9); 
+   root = insert(root, 1); 
+   root = insert(root, 7); 
+   root = insert(root, 15);
+   root = insert(root, 6);
    root = insert(root, 12);
+   root = insert(root, 19);
    int max = FindMax(root); 
    int min = FindMin(root); 
    int height = findHeight(root); 
    int depth = minimumDepth(root);
+   if(isBinarySearchTree(root))
+     printf("This tree is a binary search tree!");
+   else
+     printf("This tree is not a binary search tree!);
    printf("The height of the tree is: %d\n", height); 
    printf("The minimum depth of the tree is: %d\n", depth); 
    printf("The maximum value in the tree is %d!\nThe minimum value of the tree is %d!\n", max, min);
@@ -287,7 +365,12 @@ int main()
    printf("\n\tPost Order traversal (LRD - LEFFT RIGHT DATA): ");
    postOrder(root);
    printf("\n");
-   int num = 0;
+   int num = 0, numDelete = 0;
+   printf("Enter the number you want to delete from the tree: );
+   scanf("%d", &numDelete); 
+   deleteNode(root,numDelete); 
+   printf("\n\t**NEW**Inorder traversal (sorted binary tree)(LDR - LEFT DATA RIGHT): ");
+   inorder(root);
    printf("Enter a number to search in the tree: ");
    scanf("%d", &num);
    if(search(root, num) == true)
