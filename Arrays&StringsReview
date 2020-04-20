@@ -1,4 +1,11 @@
-/* Arrays:
+/*
+ * Author: Sword Lord of the Lonely Peak
+ * Date: 2020/05/20
+ * Program: Strings and Array Review
+ */
+ 
+/***************************************************************************************************** 
+ * Arrays:
  * => Primative datatype can only store one value at a time. It cannot store mutiple values!
  * => This is why we use an array! With an array, we can store n number of elements (more than 1 element) using one variable. 
  * => However, all the values that are stored in an array must of the same datatype. 
