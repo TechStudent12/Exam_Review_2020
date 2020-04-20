@@ -147,6 +147,68 @@
  *                         // ie. Hari\0. This is bacause it shows where the string ends, which is needed in printing the string. 
  *      printf("Your name is: %s", name); 
  *    }
+ * String Functions:
+ * => Include the library called string.h to access the string functions. 
+ *   1) strstr()
+ *   2) strcmp()
+ *      +++Prototype: int strcmp(const char* s1, const* char* s2);
+ *      +++Compares two strings to one another (ie. s1 and s2). 
+ *      +++Returns values:
+ *         Less than 0 if s1 < s2 
+ *         Greater than 0 if s1 > s2
+ *         Equal to 0 if s1 == s2 
+ *   3) strlen()
+ *      +++Prototype = size_t strlen(const char* str); 
+ *      +++It will return a integer, which is the length of the given string. 
+ *      +++It will not count the NULL character, which there at the end of the string. 
+ *      +++It will always calculate the length of the string and NOT the length of the array. 
+ *      +++Example: 
+ *          #include <stdio.h>
+ *          #include <string.h>
+ *          int main()
+ *          {
+ *            char *str = "Hello World"; // char str[100] = "Hello World"; 
+ *            printf("%d", strlen(str));
+ *            return 0; 
+ *          }
+ *   4) strcpy()
+ *      +++This function is also called string copy function. 
+ *      +++Prototype: char* strcpy(char* destination, const char* source);
+ *      +++strcpy is used to copy a string pointed by the source (including the NULL character) to the destination (character array).
+ *      +++Example: 
+ *         #include <stdio.h>
+ *         #include <string.h>
+ *         int main()
+ *         {
+ *           char str1[10] = "Hello";
+ *           char str2[10];
+ *           char str3[10];
+ *           strcpy(str3, strcpy(str2, str1)); 
+ *           //printf("%s\n", strcpy(str2, str1)); 
+ *           printf("%s %s", str2, str3); 
+ *           return 0; 
+ *         }
+ *      +++strcpy returns the pointer to the first character of the string which is copied to the destination.
+ *         Hence, when we use %s, then the whole string will be printed on the screen.  
+ *      +++CAUTION! 
+ *         In the call to strcpy(str1,str2), there is no way the strcpy will check whether the string pointed by str2 will fit in str1.
+ *         If the length of the string pointed by str2 is greater than the length of the character array str1 then it will have undefined behaviours.
+ *         This why to avoid this, we use strncpy function!
+ *      +++Prototype of strncpy: char* strncpy(destination, source, sizeof(destination)); 
+ *      +++Example of strncpy: 
+ *          #include <stdio.h> 
+ *          #include <string.h>
+ *          int main()
+ *          {
+ *            char str1[6] = "Hello";
+ *            char str2[4];
+ *            strncpy(str2, str1, sizeof(str2)); //NULL character is not copied to destination, which is str2. 
+ *            str2[sizeof(str2) - 1] = '\0'; //Need to add NULL character at the end of the string. 
+ *            printf("%s", str2);
+ *            return 0; 
+ *          }
+ *      +++strncpy will leave the string str2(destination) without a termination NULL character. 
+           If the size of str1 is equal to or greater than the size of str2(destination). 
  ****************************************************************************************************/
  //Example Program 1 ====> Find all the permutations of a string:
  //Code:
