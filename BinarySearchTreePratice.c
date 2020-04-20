@@ -171,7 +171,94 @@ int FindMax(BstNode* root)
   return root->data; 
 }
 
-int main()
+/*Depth_First Approach => PreOrder, InOrder, and PostOrder Traversal*/
+
+//DLR => DATA LEFT RIGHT 
+//FOLLOWS SEQUENCE OF ROOT LEFT RIGHT
+void preOrder(BstNode* root)
+{
+    if(root == NULL)
+        return;
+    else
+    {
+        printf("%d ", root->data); 
+        preOrder(root->left);
+        preOrder(root->right); 
+    }
+}
+
+//LDR => LEFT DATA RIGHT 
+//FOLLOWS SEQUENCE OF LEFT ROOT RIGHT
+void inorder(BstNode* root)
+{
+    if(root == NULL)
+        return;
+    else
+    {
+        inorder(root->left);
+        printf("%d ", root->data); 
+        inorder(root->right); 
+    }
+}
+
+//LRD => LEFT RIGHT DATA
+//FOLLOWS SEQUENCE OF LEFT RIGHT ROOT
+void postOrder(BstNode* root)
+{
+    if(root == NULL)
+        return;
+    else
+    {
+        postOrder(root->left);
+        postOrder(root->right); 
+        printf("%d ", root->data); 
+    }
+}
+
+/*Breadth-First Approach => Level Order Traversal*/
+
+//This function finds the height of the tree and its corresponding individual subtrees. 
+int heightTree(BstNode* node) 
+{ 
+    if (node==NULL) 
+        return 0; 
+    else
+    { 
+        /* compute the height of each subtree */
+        int lheight = heightTree(node->left); 
+        int rheight = heightTree(node->right); 
+  
+        /* use the larger one */
+        if (lheight > rheight) 
+            return(lheight+1); 
+        else return(rheight+1); 
+    } 
+}
+
+//Prints the values of the tree in level order (from left to right). 
+void printGivenLevel(BstNode* root, int level) 
+{ 
+    if (root == NULL) 
+        return; 
+    if (level == 1) 
+        printf("%d ", root->data); 
+    else if (level > 1) 
+    { 
+        printGivenLevel(root->left, level-1); 
+        printGivenLevel(root->right, level-1); 
+    } 
+} 
+
+//This function changes the levels (goes through the levels) of the tree. 
+void levelOrder(BstNode* root) 
+{ 
+    int h = heightTree(root); 
+    int i; 
+    for (i=1; i<=h; i++) 
+        printGivenLevel(root, i); 
+} 
+
+int main() 
 {
    struct BstNode* root; //To store address of root node. 
    root = NULL; // setting tree as empty
@@ -189,6 +276,15 @@ int main()
    printf("The height of the tree is: %d\n", height); 
    printf("The minimum depth of the tree is: %d\n", depth); 
    printf("The maximum value in the tree is %d!\nThe minimum value of the tree is %d!\n", max, min);
+   printf("**Breadth approach**\n\tLevel Order traversal: ");
+   levelOrder(root); 
+   printf("\n**Depth Approach**\n\tPreorder traversal(DLR): ");
+   preOrder(root); 
+   printf("\n\tInorder traversal (sorted binary tree)(LDR): ");
+   inorder(root);
+   printf("\n\tPost Order traversal(LRD: ");
+   postOrder(root);
+   printf("\n");
    int num = 0;
    printf("Enter a number to search in the tree: ");
    scanf("%d", &num);
