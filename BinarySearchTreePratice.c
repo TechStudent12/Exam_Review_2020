@@ -11,7 +11,64 @@
  *    Breadth-First Approach: 
  *    => In a tree, using breadth-first approach, we would visit all the nodes at the same depth or levels before visiting the nodes at the next level. 
  *    => Example: 
+ *
+ *            A             //L-0
+ *          /   \
+ *         B     C          //L-1
+ *        / \   / \
+ *       D  E  F   G        //L-2
+ *         / \      \ 
+ *        H   I      K      //L-3
  *    
+ *    +++In breadth-first approach, we would visit the nodes in this order (from left to right): F B C D E F G H I K
+ *    +++This kind of breadth-first traversal is called level-order traversal.  
+ *    Depth-First Approach: 
+ *    => 3 most used strategies for this approach are visiting:
+ *       - Root, Left, and Right ---------------->This is called Preorder traversal (DLR).
+ *       - Left, Root, and Right ---------------->This is called Inorder traversal (LDR).
+ *       - Left, Right, and Root ---------------->This is called Postorder traversal (LRD).
+ *    => Example (Preorder traversal): 
+ *
+ *       //Remember this sequence! ROOT LEFT RIGHT
+ *       //DLR stands for data, left, right! Thus, we need to travel from left to right in this approach starting from the root!
+ *
+ *            A             //L-0
+ *          /   \
+ *         B     C          //L-1
+ *        / \   / \
+ *       D  E  F   G        //L-2
+ *         / \      \ 
+ *        H   I      K      //L-3
+ *    
+ *    +++In depth-first approach (also called preorder traversal (Data Left Right)), we would visit the nodes in this order: A B D E H I C F G K
+ *    => Example (Inorder traversal): 
+ *
+ *       //Remember this sequence! LEFT ROOT RIGHT
+ *       //LDR stands for left, data, right! Thus, we need to travel from left to right in this approach starting from the left subtree!
+ *
+ *            A             //L-0
+ *          /   \
+ *         B     C          //L-1
+ *        / \   / \
+ *       D  E  F   G        //L-2
+ *         / \      \ 
+ *        H   I      K      //L-3
+ *    
+ *    +++In depth-first approach (also called preorder traversal (Data Left Right)), we would visit the nodes in this order: B D E H I A C F G K
+ *    => Example (Postorder traversal): 
+ *
+ *       //Remember this sequence! LEFT RIGHT ROOT
+ *       //LRD stands for left, right, data! Thus, we need to travel from left to right in this approach starting from the left subtree!
+ *
+ *            A             //L-0
+ *          /   \
+ *         B     C          //L-1
+ *        / \   / \
+ *       D  E  F   G        //L-2
+ *         / \      \ 
+ *        H   I      K      //L-3
+ *    
+ *    +++In depth-first approach (also called preorder traversal (Data Left Right)), we would visit the nodes in this order: B D E H I C F G K A
  */
 
 /* Recap On Binary Search Trees!
