@@ -4,7 +4,8 @@
  * Program: Binary Search Tree Implementation!
  */
 
-/* Tree Traversal
+/***************************************************************************************************************************************
+ * Tree Traversal
  * => Tree traversal is defined the process of visiting each node in the tree eactly onece in some order. 
  *    Visit means reading/processing data in each node. 
  * => Two types of traversal techniques: breadth-first and depth-first. 
@@ -70,7 +71,7 @@
  *        H   I      K      //L-3
  *    
  *    +++In depth-first approach (also called preorder traversal (Data Left Right)), we would visit the nodes in this order: B D E H I C F G K A
- */
+ ***************************************************************************************************************************************/
 
 /* Recap On Binary Search Trees!
  *   => Binary Search Tree (BST) is a binary tree, in which for each node, 
